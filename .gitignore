@@ -1,0 +1,61 @@
+# ---------------------------
+# IDEs
+# ---------------------------
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# VSCode
+.vscode/
+
+# ---------------------------
+# Java
+# ---------------------------
+
+*.class
+*.jar
+*.war
+*.ear
+
+# ---------------------------
+# Maven
+# ---------------------------
+
+target/
+dependency-reduced-pom.xml
+
+# ---------------------------
+# Gradle
+# ---------------------------
+
+.gradle/
+build/
+!gradle-wrapper.jar
+
+# ---------------------------
+# Logs
+# ---------------------------
+
+*.log
+
+# ---------------------------
+# Configuração sensível
+# ---------------------------
+
+application.yml
+.env
+*.key
+*.pem
+
+# Exemplo de arquivo público (pode versionar)
+!application-sample.yml
+
+# ---------------------------
+# SO / arquivos inúteis
+# ---------------------------
+
+.DS_Store
+Thumbs.db
