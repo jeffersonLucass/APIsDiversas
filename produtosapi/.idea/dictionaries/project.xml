@@ -3,6 +3,10 @@
     <words>
       <w>descricao</w>
       <w>preco</w>
+      <w>produto</w>
+      <w>produtos</w>
+      <w>recebido</w>
+      <w>salvar</w>
     </words>
   </dictionary>
 </component>
