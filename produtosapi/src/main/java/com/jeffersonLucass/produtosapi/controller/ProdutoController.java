@@ -4,6 +4,7 @@ import com.jeffersonLucass.produtosapi.model.Produto;
 import com.jeffersonLucass.produtosapi.repository.ProdutoRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -44,11 +45,19 @@ public class ProdutoController {
         produtoRepository.deleteById(id);
     }
 
+    //Adicionando o metodo PUT(Atualizar)
     @PutMapping("/{id}")
     public void atualizar(@PathVariable("id") String id, @RequestBody Produto produto){
         produto.setId(id);
         produtoRepository.save(produto);
     }
 
+    //Atualizando o metodo de busca pelo nome
+    @GetMapping
+    public List<Produto> buscar(@RequestParam("nome") String nome){
+
+        return produtoRepository.findByNome(nome);
+
+    }
 
 }
