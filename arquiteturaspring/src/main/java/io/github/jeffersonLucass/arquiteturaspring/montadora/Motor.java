@@ -47,4 +47,15 @@ public class Motor {
     public void setTipoMotor(TipoMotor tipoMotor) {
         this.tipoMotor = tipoMotor;
     }
+
+    @Override
+    public String toString() {
+        return "Motor{" +
+                "modelo='" + modelo + '\'' +
+                ", cavalos=" + cavalos +
+                ", Cilindros=" + Cilindros +
+                ", litragem=" + litragem +
+                ", tipoMotor=" + tipoMotor +
+'}';
+    }
 }
