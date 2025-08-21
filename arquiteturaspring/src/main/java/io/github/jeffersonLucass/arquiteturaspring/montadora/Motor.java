@@ -55,7 +55,7 @@ public class Motor {
                 ", cavalos=" + cavalos +
                 ", Cilindros=" + Cilindros +
                 ", litragem=" + litragem +
-                ", tipoMotor=" + tipoMotor +
+                ", Motor=" + tipoMotor +
 '}';
     }
 }

@@ -14,7 +14,7 @@ public class TesteFabricaController {
     //UTILIZO ESSA ANNOTATION PARA INJETAR  A INSTANCIA DE MOTOR DA MONTADORACONFIGURATION.
     //UTILIZO QUALIFIER PARA IDENTIFICAR QUAL CONFIGURATION DO MOTOR EU QUERO UTILIZAR.
     @Autowired
-    @Qualifier("motorTurbo")
+    @Turbo
     private Motor motor;
 
 
