@@ -6,13 +6,17 @@ import org.springframework.stereotype.Service;
 public class TodoService {
 
     private TodoRepository repository;
+    private TodoValidator validator;
+    private MailSender mailSender;
 
-    public TodoService(TodoRepository todoRepository){
+    public TodoService(TodoRepository todoRepository,TodoValidator validator,MailSender mailSender){
         this.repository = todoRepository;
+        this.validator = validator;
+        this.mailSender = mailSender;
     }
 
     public TodoEntity salvar(TodoEntity novoTodo){
-
+        validator.validar(novoTodo);
         return repository.save(novoTodo);
 
     }
@@ -20,6 +24,8 @@ public class TodoService {
     public void atualizarStatus(TodoEntity todo){
 
         repository.save(todo);
+        String status = todo.getConcluido() == Boolean.TRUE ? "Concluído" : "Não concluído";
+        mailSender.enviar("Todo  " + todo.getDescricao() + "foi atualizado para " + status );
     }
 
     public TodoEntity buscarPorId(Integer id){
