@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TodoValidator {
 
-    private TodoRepository repository;
+    private final TodoRepository repository;
 
     public TodoValidator(TodoRepository repository){
         this.repository = repository;

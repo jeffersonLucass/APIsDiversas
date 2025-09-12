@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("todos")
 public class TodoController {
 
-    private TodoService service;
+    private final TodoService service;
 
     public TodoController(TodoService service){
         this.service = service;

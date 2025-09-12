@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class TodoService {
 
-    private TodoRepository repository;
-    private TodoValidator validator;
-    private MailSender mailSender;
+    private final TodoRepository repository;
+    private final TodoValidator validator;
+    private final MailSender mailSender;
 
     public TodoService(TodoRepository todoRepository,TodoValidator validator,MailSender mailSender){
         this.repository = todoRepository;
