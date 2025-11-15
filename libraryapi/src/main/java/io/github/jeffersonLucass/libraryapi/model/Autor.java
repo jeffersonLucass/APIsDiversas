@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -26,6 +27,9 @@ public class Autor {
 
     @Column(name = "nacionalidade", length = 50, nullable = false)
     private String nacionalidade;
+
+    @OneToMany(mappedBy = "autor") // mappedBy informa  que essa variavel abaixo não é uma coluna do banco e sim uma referenciação a tabela Livro
+    private List<Livro> livros;
 
 
     @Deprecated
