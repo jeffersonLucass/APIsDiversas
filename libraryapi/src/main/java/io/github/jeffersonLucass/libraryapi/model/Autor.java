@@ -3,6 +3,7 @@ package io.github.jeffersonLucass.libraryapi.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.UUID;
 @Table(name = "autor", schema = "public")
 @Getter
 @Setter
+@ToString
 public class Autor {
 
     @Id
@@ -30,13 +32,6 @@ public class Autor {
 
     @OneToMany(mappedBy = "autor") // mappedBy informa  que essa variavel abaixo não é uma coluna do banco e sim uma referenciação a tabela Livro
     private List<Livro> livros;
-
-
-    @Deprecated
-    public Autor(){
-        //Para uso do framework
-    }
-
 
 
 }
