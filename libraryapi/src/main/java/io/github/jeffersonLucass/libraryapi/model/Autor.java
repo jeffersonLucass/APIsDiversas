@@ -30,7 +30,9 @@ public class Autor {
     @Column(name = "nacionalidade", length = 50, nullable = false)
     private String nacionalidade;
 
-    @OneToMany(mappedBy = "autor") // mappedBy informa  que essa variavel abaixo não é uma coluna do banco e sim uma referenciação a tabela Livro
+    // mappedBy informa  que essa variavel abaixo não é uma coluna do banco e sim uma referenciação a tabela Livro
+    //@OneToMany(mappedBy = "autor")
+    @Transient
     private List<Livro> livros;
 
 
