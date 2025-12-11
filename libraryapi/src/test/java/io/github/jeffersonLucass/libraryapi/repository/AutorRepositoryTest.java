@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,6 +46,41 @@ public class AutorRepositoryTest {
 
 
     }
+
+    @Test
+    public void ListarTest(){
+        List<Autor> list = repository.findAll();
+
+        list.forEach(System.out::println);
+    }
+
+    @Test
+    public void countTest(){
+        long count = repository.count();
+        System.out.println("Contagem de autores: " + count);
+    }
+
+    @Test
+    public void deleteporIdTest(){
+        var id = UUID.fromString("073e9a71-a0f9-4c2c-a03c-3f29f30ac672");
+
+        repository.deleteById(id);
+
+
+    }
+
+
+    @Test
+    public void deleteTest(){
+        var id = UUID.fromString("eff716f8-9a8e-4210-9117-e3ff6b0f5cf8");
+        var maria = repository.findById(id).get();
+
+        repository.delete(maria);
+
+
+    }
+
+
 
 
 }
