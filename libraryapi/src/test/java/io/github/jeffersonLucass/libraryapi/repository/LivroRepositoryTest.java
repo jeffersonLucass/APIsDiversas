@@ -42,27 +42,49 @@ class LivroRepositoryTest {
     @Test
     void salvarCascadeTest(){
         Livro livro = new Livro();
-        livro.setIsbn("90887-84874");
-        livro.setPreco(BigDecimal.valueOf(100));
+        livro.setIsbn("90888-84874");
+        livro.setPreco(BigDecimal.valueOf(200));
         livro.setGenero(GeneroLivro.FICCAO);
         livro.setDataPublicacao(LocalDate.of(2000,2,21));
-        livro.setTitulo("UFO");
+        livro.setTitulo("Terceiro Livro");
 
         Autor autor = new Autor();
-        autor.setNome("João");
+        autor.setNome("Maria");
         autor.setNacionalidade("Brasileira");
-        autor.setDataNascimento(LocalDate.of(1951,1,31));
+        autor.setDataNascimento(LocalDate.of(1960,1,31));
 
         livro.setAutor(autor);
         repository.save(livro);
 
     }
 
+    @Test
+    void atualizarAutorDoLivro(){
+        UUID id = UUID.fromString("c5b837fc-7c08-4c19-9613-f5f82b375176");
+        var livroParaAtualizar = repository.findById(id).orElse(null);
+
+        UUID IdAutor = UUID.fromString("14ee33ef-d9bd-42c6-9c37-12dedd6cc5e7");
+        Autor lucas = autorRepository.findById(IdAutor).orElse(null);
+
+        livroParaAtualizar.setAutor(lucas);
+
+        repository.save(livroParaAtualizar);
 
 
+    }
 
+    //Ao deletar um livro o hibernate tenta deletar o Autor vinculado a esse livro, o banco bloqueou pq outros livros utilizam esse autor
+    @Test
+    void deletar(){
+        UUID id = UUID.fromString("83d074e8-5989-42b3-96ad-4bf736d5c8cf");
+        repository.deleteById(id);
+    }
 
-
+    @Test
+    void deletarCascade(){
+        UUID id = UUID.fromString("c5b837fc-7c08-4c19-9613-f5f82b375176");
+        repository.deleteById(id);
+    }
 
 
 
