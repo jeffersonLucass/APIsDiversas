@@ -86,6 +86,10 @@ class LivroRepositoryTest {
         repository.deleteById(id);
     }
 
+    @Test
+    void buscarLivroTest(){
+
+    }
 
 
 
