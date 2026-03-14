@@ -49,5 +49,20 @@ public class AutorController {
 
     }
 
+    //Idempotente (uma requisição idêntica pode ser feita uma ou mais vezes em sequência com o mesmo efeito enquanto deixa o servidor no mesmo estado)
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deletar(@PathVariable("id")  String id){
+        var idAutor = UUID.fromString(id);
+        Optional<Autor> autorOptional = autorService.obterPorId(idAutor);
+
+        if (autorOptional.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        autorService.deletar(autorOptional.get());
+
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
