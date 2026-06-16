@@ -1,8 +1,11 @@
 package io.github.jeffersonLucass.libraryapi.controller;
 
+import io.github.jeffersonLucass.libraryapi.Exceptions.RegistroDuplicadoException;
 import io.github.jeffersonLucass.libraryapi.controller.dto.AutorDTO;
+import io.github.jeffersonLucass.libraryapi.controller.dto.ErroResposta;
 import io.github.jeffersonLucass.libraryapi.model.Autor;
 import io.github.jeffersonLucass.libraryapi.service.AutorService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -27,13 +30,18 @@ public class AutorController {
 
 
     @PostMapping
-    public ResponseEntity<Void> salvar(@RequestBody AutorDTO autorDTO) {
-        var autorEntidade = autorDTO.mapearParaAutor();
-        autorService.salvar(autorEntidade);
+    public ResponseEntity<Object> salvar(@RequestBody AutorDTO autorDTO) {
+        try {
+            Autor autorEntidade = autorDTO.mapearParaAutor();
+            autorService.salvar(autorEntidade);
 
-        URI location =ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(autorEntidade.getId()).toUri();
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(autorEntidade.getId()).toUri();
 
-        return ResponseEntity.created(location).build();
+            return ResponseEntity.created(location).build();
+        }catch (RegistroDuplicadoException e){
+            var erroDTO = ErroResposta.conflito(e.getMessage());
+            return ResponseEntity.status(erroDTO.status()).body(erroDTO);
+        }
     }
 
     @GetMapping("{id}")
